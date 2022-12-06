@@ -5,7 +5,7 @@ const Likes = (props) => {
   return (
     <div className="button-controls">
       <button onClick={props.onIncrementLikes}>{props.likes}&nbsp;❤</button>
-      <button onClick={props.onDecrementLikes}>Dislake</button>
+      <button onClick={props.onDecrementLikes}>Dislike</button>
     </div>
   );
 };

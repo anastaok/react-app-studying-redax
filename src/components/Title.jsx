@@ -15,7 +15,11 @@ const Title = () => {
   return (
     <div className="cart-title">
       <div className="cart-title-top">
-        <input type="text" onChange={handleChange} />
+        <input
+          type="text"
+          onChange={handleChange}
+          placeholder="Write the name of the photo..."
+        />
         <p>{title}</p>
       </div>
     </div>

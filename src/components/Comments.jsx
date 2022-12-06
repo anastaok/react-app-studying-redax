@@ -28,12 +28,17 @@ function Comments() {
 
   useEffect(() => {
     dispatch(commentsLoad());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="card-comments">
       <form onSubmit={handleSubmit} className="comments-items-create">
-        <input type="text" value={textComment} onChange={handleInput} />
+        <input
+          type="text"
+          value={textComment}
+          onChange={handleInput}
+          placeholder="Write your comment..."
+        />
         <input type="submit" hidden />
       </form>
       {!!comments.length &&
