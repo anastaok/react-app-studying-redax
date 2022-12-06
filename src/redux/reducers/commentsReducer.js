@@ -18,7 +18,7 @@ export const commentsReducer = (state = initialState, action) => {
       };
 
     case COMMENTS_LOAD:
-      const commentsNew = action.payload.map((res) => {
+      const commentsNew = action.data.map((res) => {
         return {
           text: res.name,
           id: res.id,
