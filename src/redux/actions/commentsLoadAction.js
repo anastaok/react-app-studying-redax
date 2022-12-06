@@ -41,7 +41,7 @@ export const commentsLoad = () => {
     try {
       dispatch(loaderOn());
       const response = await fetch(
-        "https://jsonplaceholder.typicode.com/comments?_limit=10"
+        "https://jsonplaceholder.typicode.com/comments?_limit=6"
       );
       const jsonData = await response.json();
 
