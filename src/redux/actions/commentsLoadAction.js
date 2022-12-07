@@ -48,7 +48,7 @@ export const commentsLoad = () => {
       setTimeout(() => {
         dispatch({
           type: COMMENTS_LOAD,
-          data: jsonData,
+          payload: jsonData,
         });
         dispatch(loaderOff());
       }, 1000);

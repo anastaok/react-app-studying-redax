@@ -8,7 +8,7 @@ export const spamFilter = ({ dispatch }) => {
     return function (action) {
       if (action.type === COMMENT_CREATE || action.type === COMMENT_UPDATE) {
         const hasBadWords = badWords.some((res) =>
-          action.data.text.includes(res)
+          action.payload.text.includes(res)
         );
         if (hasBadWords) {
           return dispatch(errorOn("Уважайте людей!"));

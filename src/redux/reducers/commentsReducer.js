@@ -14,11 +14,11 @@ export const commentsReducer = (state = initialState, action) => {
     case COMMENT_CREATE:
       return {
         ...state,
-        comments: [...state.comments, action.data],
+        comments: [...state.comments, action.payload],
       };
 
     case COMMENTS_LOAD:
-      const commentsNew = action.data.map((res) => {
+      const commentsNew = action.payload.map((res) => {
         return {
           text: res.name,
           id: res.id,
@@ -31,14 +31,14 @@ export const commentsReducer = (state = initialState, action) => {
       };
 
     case COMMENT_UPDATE:
-      const { data } = action;
-      const { comments } = state;
-      const itemIndex = comments.findIndex((res) => res.id === data.id);
+      const itemIndex = state.comments.findIndex(
+        (res) => res.id === action.payload.id
+      );
 
       const nextComments = [
-        ...comments.slice(0, itemIndex),
-        data,
-        ...comments.slice(itemIndex + 1),
+        ...state.comments.slice(0, itemIndex),
+        action.payload,
+        ...state.comments.slice(itemIndex + 1),
       ];
 
       return {
@@ -47,21 +47,20 @@ export const commentsReducer = (state = initialState, action) => {
       };
 
     case COMMENT_DELETE:
-      return (() => {
-        const { id } = action;
-        const { comments } = state;
-        const itemIndex = comments.findIndex((res) => res.id === id);
+      const { comments } = state;
+      const itemIndexDelete = comments.findIndex(
+        (res) => res.id === action.payload.id
+      );
 
-        const nextComments = [
-          ...comments.slice(0, itemIndex),
-          ...comments.slice(itemIndex + 1),
-        ];
+      const nextCommentsDelete = [
+        ...comments.slice(0, itemIndexDelete),
+        ...comments.slice(itemIndexDelete + 1),
+      ];
 
-        return {
-          ...state,
-          comments: nextComments,
-        };
-      })();
+      return {
+        ...state,
+        comments: nextCommentsDelete,
+      };
 
     default:
       return state;
